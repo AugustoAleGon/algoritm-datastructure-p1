@@ -12,25 +12,45 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+# Define a function for getting fix numbers
+def get_fixed_code(phonenumber):
+    close_parenthesis = phonenumber.find(")")
+    if(close_parenthesis != -1):
+        return phonenumber[:(close_parenthesis+1)]
+
+# Define a function for getting cellphone numbers
+def get_cellphone_code(phonenumber):
+  if(phonenumber.startswith('7') or phonenumber.startswith('8') or phonenumber.startswith('9')):
+      return phonenumber[:4]
+
+
+
 # Define a function for getting Bangalore's numbers
 def get_bangalore_numbers(list_numbers):
-  bangalore_numbers = []
+  bangalore_codes = []
   total_calls = 0
   bangalore_fixed_calls = 0
+  flag = True
   for number in list_numbers:
     if number[0].startswith("(080)"):
-      if not number[0] in bangalore_numbers:
-        bangalore_numbers.append(number[0])
-    if number[1].startswith("(080)"):
-      if not number[1] in bangalore_numbers:
-        bangalore_numbers.append(number[1])
-    if number[0].startswith("(080)") or number[1].startswith("(080)"):
+      if number[1].startswith("(0"):
+        fix_code = get_fixed_code(number[1])
+        if not fix_code in bangalore_codes:
+          bangalore_codes.append(fix_code)
+      if(number[1].find(" ") != -1):
+        fix_code = get_cellphone_code(number[1])
+        if not fix_code in bangalore_codes:
+          bangalore_codes.append(fix_code)
+      if(number[1].startswith("140") and flag):
+        bangalore_codes.append("140")
+        flag = False
+    if number[0].startswith("(080)"):
       total_calls = total_calls + 1
     if number[0].startswith("(080)") and number[1].startswith("(080)"):
       bangalore_fixed_calls = bangalore_fixed_calls + 1
-  bangalore_numbers.sort()
+  bangalore_codes.sort()
   percentage = bangalore_fixed_calls / total_calls
-  return bangalore_numbers, percentage
+  return bangalore_codes, percentage
 
 def print_list(list_numbers):
   for number in list_numbers:

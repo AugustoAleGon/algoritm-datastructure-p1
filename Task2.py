@@ -58,5 +58,5 @@ September 2016.".
 """
 Big O' Notation:
 We will get the numbers of the calls and the records.
-Notation O(2N)
+Notation O(2N^2)
 """

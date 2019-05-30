@@ -1,0 +1,47 @@
+Task0 Runtime Analysis:
+
+Big O' Notation:
+The complexity of the Task0 is a constant which is 2.
+Because we print a statement directly from the array.
+O(2)
+
+Task1 Runtime Analysis:
+Big O' Notation:
+In the task1 we need to get the unique numbers of all the records.
+Because we have two differents records we need first to get the unique numbers
+of the calls and then texts.
+So first we get all the unique numbers of the calls and then unique numbers
+of the texts.
+The complexity of the funcion get_unique_number is:
+First we iterate through the whole array. So that means O(N)
+And after we start saving in a new array of unique numbers, so each new
+records must be compare in the whole array two times. That means O(N^2)
+in the worst case that all the numbers are uniques.
+In summary the notation is:
+O(N^2)
+
+Task2 Runtime Analysis:
+Big O' Notation:
+In the task2 we need the number that spent the longest time on the phone.
+For this purpose We create a dictionary, so you can save the number and
+the total amount of time spent on the phone.
+The function get_unique_numbers return a dictionary and the complexity of
+that functions is O(2N^2)
+In summary the notation is:
+O(N^2)
+
+Task3 Runtime Analysis:
+Big O' Notation:
+In the task3 we need the codes of the telephone numbers that has been called
+from a fix code in Bangalore. So we create functions according to the
+descriptions.
+The complexity of the worst case in get_bangalore_numbers if O(N^2)
+O(N^2)
+
+Task4 Runtime Analysis:
+Big O' Notation:
+In the task4 we need the telemarketers that only make outgoing calls.
+The complexity of get_ongoing_calls if O(N^2)
+The same complexity for remove_telemarketers_sms.
+So in summary the complexity is:
+O(N^2)

@@ -16,13 +16,9 @@ with open('calls.csv', 'r') as f:
 def get_ongoing_calls(list_numbers):
     ongoing_calls = []
     for number in list_numbers:
-        if number[0].startswith("140"):
+        if number[0].startswith("140") and (not number[1].startswith("140")):
             if not number[0] in ongoing_calls:
                 ongoing_calls.append(number[0])
-        if number[1].startswith("140"):
-            if number[1] in ongoing_calls:
-                print("Number is receiving a phone call: {}".format(number[1]))
-                ongoing_calls.remove(number[0])
     return ongoing_calls
 
 def remove_telemarketers_sms(list_messages, ongoing_calls):
@@ -38,6 +34,7 @@ def remove_telemarketers_sms(list_messages, ongoing_calls):
 
 telemarketeres_calls = get_ongoing_calls(calls)
 telemarketers_set = remove_telemarketers_sms(texts, telemarketeres_calls)
+final_result = set(telemarketers_set)
 
 def print_set(set_numbers):
     for number in set_numbers:
