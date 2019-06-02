@@ -1,3 +1,7 @@
+Note:
+For all the Tasks we are not considering the importing of the csv's file which
+in that case is O(N).
+
 Task0 Runtime Analysis:
 
 Big O' Notation:
@@ -10,15 +14,13 @@ Big O' Notation:
 In the task1 we need to get the unique numbers of all the records.
 Because we have two differents records we need first to get the unique numbers
 of the calls and then texts.
-So first we get all the unique numbers of the calls and then unique numbers
-of the texts.
+For less complexity we use a set to get only unique numbers.
 The complexity of the funcion get_unique_number is:
 First we iterate through the whole array. So that means O(N)
-And after we start saving in a new array of unique numbers, so each new
-records must be compare in the whole array two times. That means O(N^2)
 in the worst case that all the numbers are uniques.
+We need to do it twice for calls and texts.
 In summary the notation is:
-O(N^2)
+O(N)
 
 Task2 Runtime Analysis:
 Big O' Notation:
@@ -26,7 +28,9 @@ In the task2 we need the number that spent the longest time on the phone.
 For this purpose We create a dictionary, so you can save the number and
 the total amount of time spent on the phone.
 The function get_unique_numbers return a dictionary and the complexity of
-that functions is O(2N^2)
+that functions is O(2N^2) because in the for loop which is basically O(N)
+we will look in the dictionary with "in" function which in the worst case
+is O(N). So at the end we have O(N*N).
 In summary the notation is:
 O(N^2)
 
@@ -35,13 +39,19 @@ Big O' Notation:
 In the task3 we need the codes of the telephone numbers that has been called
 from a fix code in Bangalore. So we create functions according to the
 descriptions.
+In the task3 we have the same case of a for loop and inside and "in" function
+in a list, so the complexity in total is O(N*N)
+Additionally we have to consider the sort function at the end which implies
+O(N*logN)
+As result we have O(N^2 + N*logN)
 The complexity of the worst case in get_bangalore_numbers if O(N^2)
 O(N^2)
 
 Task4 Runtime Analysis:
 Big O' Notation:
 In the task4 we need the telemarketers that only make outgoing calls.
-The complexity of get_ongoing_calls if O(N^2)
-The same complexity for remove_telemarketers_sms.
+First we create two set variables for getting unique numbers so we have
+two for loop the complexity is O(N).
+We create a list for sorting lexicographic numbers
 So in summary the complexity is:
-O(N^2)
+O(N*logN)

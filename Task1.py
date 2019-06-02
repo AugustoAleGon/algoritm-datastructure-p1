@@ -4,25 +4,12 @@ It's ok if you don't understand how to read files.
 """
 import csv
 
-def equal_numbers(number1, number2):
-    return number1 == number2
+unique_numbers_set = set()
 
-def get_unique_numbers(data_numbers):
-    unique_numbers = []
-    for i in range(len(data_numbers)):
-        if i == 0:
-            if equal_numbers(data_numbers[i][0], data_numbers[i][1]):
-                unique_numbers.append(data_numbers[i][0])
-            else:
-                unique_numbers.append(data_numbers[i][0])
-                unique_numbers.append(data_numbers[i][1])
-        if(not (data_numbers[i][0] in unique_numbers)):
-            unique_numbers.append(data_numbers[i][0])
-        if(not (data_numbers[i][1] in unique_numbers)):
-            unique_numbers.append(data_numbers[i][1])
-    return unique_numbers
-
-unique_numbers_text = []
+def add_numbers_to_set(data_numbers):
+    for number in data_numbers:
+        unique_numbers_set.add(number[0])
+        unique_numbers_set.add(number[1])
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -33,10 +20,9 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
 
 
-unique_numbers_text = get_unique_numbers(texts)
-unique_numbers_call = get_unique_numbers(calls)
-final_unique_numbers = set(unique_numbers_call + unique_numbers_text)
-print("There are {} different telephone numbers in the records.".format(len(final_unique_numbers)))
+add_numbers_to_set(texts)
+add_numbers_to_set(calls)
+print("There are {} different telephone numbers in the records.".format(len(unique_numbers_set)))
 
 """
 TASK 1:
@@ -48,5 +34,5 @@ Print a message:
 """
 Big O' Notation:
 We will get the numbers of the calls and the records.
-Notation O(2N^2)
+Notation O(N)
 """

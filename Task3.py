@@ -49,7 +49,7 @@ def get_bangalore_numbers(list_numbers):
     if number[0].startswith("(080)") and number[1].startswith("(080)"):
       bangalore_fixed_calls = bangalore_fixed_calls + 1
   bangalore_codes.sort()
-  percentage = bangalore_fixed_calls / total_calls
+  percentage = (bangalore_fixed_calls / total_calls) * 100
   return bangalore_codes, percentage
 
 def print_list(list_numbers):
@@ -95,5 +95,5 @@ The percentage should have 2 decimal digits
 
 """
 Big O' Notation:
-Notation O(4N)
+Notation O(N^2)
 """

@@ -18,9 +18,8 @@ def get_unique_numbers(data_numbers):
     unique_numbers = {}
     for i in range(len(data_numbers)):
         if i == 0:
-            if not equal_numbers(data_numbers[i][0], data_numbers[i][1]):
-                unique_numbers[data_numbers[i][0]] = int(data_numbers[i][-1])
-                unique_numbers[data_numbers[i][1]] = int(data_numbers[i][-1])
+            unique_numbers[data_numbers[i][0]] = int(data_numbers[i][-1])
+            unique_numbers[data_numbers[i][1]] = int(data_numbers[i][-1])
         if(data_numbers[i][0] in unique_numbers):
             unique_numbers[data_numbers[i][0]] = int(unique_numbers[data_numbers[i][0]]) + int(data_numbers[i][-1])
         else:

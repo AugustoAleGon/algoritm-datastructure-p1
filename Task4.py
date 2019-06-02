@@ -12,38 +12,30 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+unique_set_make_calls = set()
+unique_set_receive_calls_texts = set()
+
 # Ongoing calls
 def get_ongoing_calls(list_numbers):
-    ongoing_calls = []
     for number in list_numbers:
-        if number[0].startswith("140") and (not number[1].startswith("140")):
-            if not number[0] in ongoing_calls:
-                ongoing_calls.append(number[0])
-    return ongoing_calls
+        unique_set_make_calls.add(number[0])
+        unique_set_receive_calls_texts.add(number[1])
 
-def remove_telemarketers_sms(list_messages, ongoing_calls):
-    for message in list_messages:
-        if message[0].startswith("140"):
-            if message[0] in ongoing_calls:
-                ongoing_calls.remove(message[0])
-        if message[1].startswith("140"):
-            if message[1] in ongoing_calls:
-                ongoing_calls.remove(message[1])
-    ongoing_calls.sort()
-    return ongoing_calls
+def get_text(list_numbers):
+    for number in list_numbers:
+        unique_set_receive_calls_texts.add(number[0])
+        unique_set_receive_calls_texts.add(number[1])
 
-telemarketeres_calls = get_ongoing_calls(calls)
-telemarketers_set = remove_telemarketers_sms(texts, telemarketeres_calls)
-final_result = set(telemarketers_set)
-
-def print_set(set_numbers):
-    for number in set_numbers:
+def print_list(list_numbers):
+    for number in list_numbers:
         print(number)
 
-
+get_ongoing_calls(calls)
+get_text(texts)
+sorted_possible_telemarketers = list(unique_set_make_calls.difference(unique_set_receive_calls_texts))
+sorted_possible_telemarketers.sort()
 print("These numbers could be telemarketers: ")
-print_set(telemarketers_set)
-
+print_list(sorted_possible_telemarketers)
 
 """
 TASK 4:
@@ -60,5 +52,5 @@ The list of numbers should be print out one per line in lexicographic order with
 
 """
 Big O' Notation:
-Notation O(6N)
+Notation O(N*logN)
 """

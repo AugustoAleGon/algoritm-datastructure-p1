@@ -24,5 +24,5 @@ Print messages:
 
 """
 Big O' Notation:
-The complexity of the Task0 is a constant which is 2.
+The complexity of the Task0 is a constant which is O(1).
 """
